@@ -5,7 +5,7 @@ import {
   getTodoListDetail,
   updateTodoList,
   deleteTodoList,
-} from './Post/service/postService'; // 서비스 파일 import
+} from './app/Post/service/postService'; // 서비스 파일 import
 
 const server = createServer(async (req, res) => {
   const url = req.url;
@@ -41,7 +41,7 @@ const server = createServer(async (req, res) => {
     });
   }
   // GET /todos/:id - Todo 세부 정보 조회
-  if (method === 'GET' && url.startsWith('/todos/')) {
+  if (method === 'GET' && url?.startsWith('/todos/')) {
     const id = url.split('/')[2]; // URL에서 id 추출
     try {
       const todo = await getTodoListDetail({ id: parseInt(id) });
@@ -52,7 +52,7 @@ const server = createServer(async (req, res) => {
     }
   }
   // PUT /todos/:id - Todo 수정
-  if (method === 'PUT' && url.startsWith('/todos/')) {
+  if (method === 'PUT' && url?.startsWith('/todos/')) {
     const id = url.split('/')[2]; // URL에서 id 추출
     let body = '';
     req.on('data', (chunk) => {
@@ -75,7 +75,7 @@ const server = createServer(async (req, res) => {
     });
   }
   // DELETE /todos/:id - Todo 삭제
-  if (method === 'DELETE' && url.startsWith('/todos/')) {
+  if (method === 'DELETE' && url?.startsWith('/todos/')) {
     const id = url.split('/')[2]; // URL에서 id 추출
     try {
       const deletedTodo = await deleteTodoList({ id: parseInt(id) });
