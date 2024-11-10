@@ -26,8 +26,8 @@ export const createTodoList = async ({ title, description }: TableProps) => {
   try {
     const res = await prisma.todoTable.create({
       data: {
-        title: title,
-        description: description,
+        title,
+        description,
       },
     });
     return res;
@@ -41,7 +41,7 @@ export const createTodoList = async ({ title, description }: TableProps) => {
 export const getTodoListDetail = async ({ id }: TableProps) => {
   try {
     const res = await prisma.todoTable.findUnique({
-      where: { id: id },
+      where: { id },
     });
     return res;
   } catch (error) {
@@ -54,11 +54,11 @@ export const getTodoListDetail = async ({ id }: TableProps) => {
 export const updateTodoList = async ({ id, title, description, isComplete }: TableProps) => {
   try {
     const res = await prisma.todoTable.update({
-      where: { id: id },
+      where: { id },
       data: {
-        title: title,
-        description: description,
-        isComplete: isComplete,
+        title,
+        description,
+        isComplete,
         updatedAt: new Date(),
       },
     });
@@ -73,7 +73,7 @@ export const updateTodoList = async ({ id, title, description, isComplete }: Tab
 export const deleteTodoList = async ({ id }: TableProps) => {
   try {
     const res = await prisma.todoTable.delete({
-      where: { id: id },
+      where: { id },
     });
     return res;
   } catch (error) {
