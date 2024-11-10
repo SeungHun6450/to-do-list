@@ -13,7 +13,7 @@ datasource db {
 model TodoTable {
   id           BigInt         @id(map: "Post_pkey") @default(autoincrement())
   title        String?        @default("")
-  desciption   String?        @default("")
+  description  String?        @default("")
   isComplete   Boolean?       @default(false)
   createdAt    DateTime?      @default(now()) @db.Timestamptz(6)
   updatedAt    DateTime?      @default(now()) @db.Timestamptz(6)
